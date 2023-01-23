@@ -75,6 +75,30 @@ app.post("/cheese", async (req, res) => {
   }
 });
 
+// Cheese Update ROUTE
+app.put("/cheese/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(
+      await Cheese.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    );
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// Cheese Delete ROUTE
+app.delete("/cheese/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(await Cheese.findByIdAndRemove(req.params.id));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
 ///////////////////////////////
 // LISTENER
 ////////////////////////////////
