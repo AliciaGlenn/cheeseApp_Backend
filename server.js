@@ -91,10 +91,18 @@ app.put("/cheese/:id", async (req, res) => {
 // Cheese Delete ROUTE
 app.delete("/cheese/:id", async (req, res) => {
   try {
-    // send all people
+    // send all cheese
     res.json(await Cheese.findByIdAndRemove(req.params.id));
   } catch (error) {
     //send error
+    res.status(400).json(error);
+  }
+});
+
+app.get("/cheese/:id", async (req, res) => {
+  try {
+    res.json(await Cheese.findById(req.params.id));
+  } catch (error) {
     res.status(400).json(error);
   }
 });
